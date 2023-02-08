@@ -36,24 +36,38 @@ export default function Form(props){
                 Last Name
                 <input 
                     type="text"
-                    name="lastName"/>
+                    name="lastName"
+                    onChange={onChange}
+                    value={formData.lastName}
+                    />
                      </label>
             <label htmlFor="email">
                 Email
                 <input 
                 name="email" 
-                type="email"/>
+                type="email"
+                onChange={onChange}
+                value={formData.email}
+                />
+
             </label>
             <label htmlFor="passWord">
                 Password
                 <input 
                 name="passWord"
                 type="text"
+                onChange={onChange}
+                value={formData.passWord}
                 />
             </label>
             <label htmlFor="dataPermission">
                 Terms Of Service
-                <input name="checkBox" type="checkbox"/>
+                <input 
+                name="dataPermission" 
+                type="checkbox"
+                checked={formData.dataPermission}
+                onChange={onChange}
+                />
             </label>
 
 
