@@ -42,8 +42,6 @@ export default function Form(props){
       axios.post('https://reqres.in/api/users'
       , formData)
       .then(res=> {
-            
-        console.log(res.data)
         updateUsers([...users, res.data])
 
       } )
