@@ -19,7 +19,7 @@ export default function Form(props){
     const change = (evt) => {
     
         const {checked, value, type, name} = evt.target;
-        console.log(checked, value, type, name)
+     
         const valueToUse =  type === "checkbox" ? checked : value
         setFormData({...formData, [name]:valueToUse})
         passesYup(name, valueToUse)
@@ -48,7 +48,9 @@ export default function Form(props){
     return (
     
         <form onSubmit={submitFormData}>
-            <label htmlFor="firstName">
+           
+            <div>
+<label htmlFor="firstName">
                 First Name
                 <input 
                 name="firstName" 
@@ -96,8 +98,19 @@ export default function Form(props){
                 onChange={change}
                 />
             </label>
-            <button disabled ={disabled}>Submit</button>
 
+
+            </div>
+            
+            <button disabled ={disabled}>Submit</button>
+            <p style={{color: "red"}}>
+                    <div>{errors.firstName}</div>
+                    <div>{errors.lastName}</div>
+                    <div>{errors.email}</div>
+                    <div>{errors.passWord}</div>
+                    <div>{errors.dataPermission}</div>
+
+            </p>
         </form>
 
 
