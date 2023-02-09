@@ -19,7 +19,7 @@ export default function Form(props){
 
     useEffect(()=> {
         formSchema.isValid(formData).then(valid=> setDisabled(!valid))
-    })
+    },[formData])
 
     const change = (evt) => {
     
