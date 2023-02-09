@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import * as yup from 'yup'
 import formSchema from "./formSchema"
 
@@ -15,6 +15,11 @@ export default function Form(props){
     const [formData, setFormData] = useState(initialFormValues)
     const [disabled, setDisabled] = useState(true)
     const [errors, setErrors] = useState({firstName : '', lastName: '', email: '', passWord: '', dataPermission: ''})
+
+
+    useEffect(()=> {
+        formSchema.isValid(formData).then(valid=> setDisabled(!valid))
+    })
 
     const change = (evt) => {
     
@@ -34,6 +39,10 @@ export default function Form(props){
 
     }
 
+
+
+
+
     //// HELPERS FUNCTION ////// 
 
     const passesYup = (name, value)=> {
@@ -49,7 +58,7 @@ export default function Form(props){
     
         <form onSubmit={submitFormData}>
            
-            <div>
+           
 <label htmlFor="firstName">
                 First Name
                 <input 
@@ -98,19 +107,16 @@ export default function Form(props){
                 onChange={change}
                 />
             </label>
-
-
-            </div>
             
             <button disabled ={disabled}>Submit</button>
-            <p style={{color: "red"}}>
-                    <div>{errors.firstName}</div>
-                    <div>{errors.lastName}</div>
-                    <div>{errors.email}</div>
-                    <div>{errors.passWord}</div>
-                    <div>{errors.dataPermission}</div>
+            <div style={{color: "red"}}>
+                    <p>{errors.firstName}</p>
+                    <p>{errors.lastName}</p>
+                    <p>{errors.email}</p>
+                    <p>{errors.passWord}</p>
+                    <p>{errors.dataPermission}</p>
 
-            </p>
+            </div>
         </form>
 
 
