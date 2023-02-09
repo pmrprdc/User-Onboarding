@@ -1,5 +1,6 @@
 import React, {useState} from "react"
-
+import * as yup from 'yup'
+import formSchema from "./formSchema"
 
 export default function Form(props){
 
@@ -12,7 +13,7 @@ export default function Form(props){
     }
 
     const [formData, setFormData] = useState(initialFormValues)
-    
+    const [disabled, setDisabled] = useState(true)
 
     const change = (evt) => {
     
@@ -22,10 +23,18 @@ export default function Form(props){
         setFormData({...formData, [name]:valueToUse})
 
     }
+
+
+    const submitFormData = (evt) => {
+
+        evt.preventDefault();
+        console.log("successful submit")
+
+    }
         
     return (
     
-        <form>
+        <form onSubmit={submitFormData}>
             <label htmlFor="firstName">
                 First Name
                 <input 
@@ -74,7 +83,7 @@ export default function Form(props){
                 onChange={change}
                 />
             </label>
-
+            <button disabled ={disabled}>Submit</button>
 
         </form>
 
