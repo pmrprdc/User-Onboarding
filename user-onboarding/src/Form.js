@@ -14,6 +14,7 @@ export default function Form(props){
 
     const [formData, setFormData] = useState(initialFormValues)
     const [disabled, setDisabled] = useState(true)
+    const [errors, setErrors] = useState({firstName : '', lastName: '', email: '', passWord: '', dataPermission: ''})
 
     const change = (evt) => {
     
@@ -21,6 +22,7 @@ export default function Form(props){
         console.log(checked, value, type, name)
         const valueToUse =  type === "checkbox" ? checked : value
         setFormData({...formData, [name]:valueToUse})
+        passesYup(name, valueToUse)
 
     }
 
@@ -31,6 +33,17 @@ export default function Form(props){
         console.log("successful submit")
 
     }
+
+    //// HELPERS FUNCTION ////// 
+
+    const passesYup = (name, value)=> {
+        
+        yup.reach(formSchema, name).validate(value)
+        .then(()=> setErrors({...errors, [name]: ''}))
+        .catch(err=> setErrors({...errors, [name]: err.errors[0]}))
+        
+    }
+    
         
     return (
     
