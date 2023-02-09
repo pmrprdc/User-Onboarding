@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from "react"
 import * as yup from 'yup'
 import formSchema from "./formSchema"
+import axios from 'axios'
 
 export default function Form(props){
+
+    const {updateUsers, users} = props;
+
+    
 
     const initialFormValues = { 
         firstName: '',
@@ -21,8 +26,7 @@ export default function Form(props){
         formSchema.isValid(formData).then(valid=> setDisabled(!valid))
     },[formData])
 
-    const change = (evt) => {
-    
+    const change = (evt) => {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         const {checked, value, type, name} = evt.target;
      
         const valueToUse =  type === "checkbox" ? checked : value
@@ -31,11 +35,23 @@ export default function Form(props){
 
     }
 
-
+    /// ON SUBMIT /// 
     const submitFormData = (evt) => {
 
         evt.preventDefault();
-        console.log("successful submit")
+      axios.post('https://reqres.in/api/users'
+      , formData)
+      .then(res=> {
+            
+        console.log(res.data)
+        updateUsers([...users, res.data])
+
+      } )
+      .catch(err=> console.log(err))
+      .finally(()=>{
+        setFormData(initialFormValues)
+      })
+        
 
     }
 
@@ -93,7 +109,7 @@ export default function Form(props){
                 Password
                 <input 
                 name="passWord"
-                type="text"
+                type="password"
                 onChange={change}
                 value={formData.passWord}
                 />
