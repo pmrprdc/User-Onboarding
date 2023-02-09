@@ -4,22 +4,27 @@ import React, {useState} from "react"
 export default function Form(props){
 
     const initialFormValues = { 
-        'firstName': '',
-        'lastName' : '',
-        'email' : '',
-        'passWord': '',
-        'dataPermission' : false
+        firstName: '',
+        lastName : '',
+        email : '',
+        passWord: '',
+        dataPermission : false
     }
 
     const [formData, setFormData] = useState(initialFormValues)
     
 
-    const onChange = (evt) => {
-        evt.preventDefault();
+    const change = (evt) => {
+    
+        const {checked, value, type, name} = evt.target;
+        console.log(checked, value, type, name)
+        const valueToUse =  type === "checkbox" ? checked : value
+        setFormData({...formData, [name]:valueToUse})
+
     }
-
+        
     return (
-
+    
         <form>
             <label htmlFor="firstName">
                 First Name
@@ -27,7 +32,7 @@ export default function Form(props){
                 name="firstName" 
                 type="text"
                 value={formData.firstName}
-                onChange={onChange}
+                onChange={change}
                 />
             </label>
 
@@ -37,7 +42,7 @@ export default function Form(props){
                 <input 
                     type="text"
                     name="lastName"
-                    onChange={onChange}
+                    onChange={change}
                     value={formData.lastName}
                     />
                      </label>
@@ -46,7 +51,7 @@ export default function Form(props){
                 <input 
                 name="email" 
                 type="email"
-                onChange={onChange}
+                onChange={change}
                 value={formData.email}
                 />
 
@@ -56,7 +61,7 @@ export default function Form(props){
                 <input 
                 name="passWord"
                 type="text"
-                onChange={onChange}
+                onChange={change}
                 value={formData.passWord}
                 />
             </label>
@@ -65,8 +70,8 @@ export default function Form(props){
                 <input 
                 name="dataPermission" 
                 type="checkbox"
-                checked={formData.dataPermission}
-                onChange={onChange}
+                checked = {formData.dataPermission}
+                onChange={change}
                 />
             </label>
 
