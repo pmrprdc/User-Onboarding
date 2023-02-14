@@ -76,6 +76,7 @@ export default function Form(props){
 <label htmlFor="firstName">
                 First Name
                 <input 
+                className="first"
                 name="firstName" 
                 type="text"
                 value={formData.firstName}
