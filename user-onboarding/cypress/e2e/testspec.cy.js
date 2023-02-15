@@ -19,12 +19,15 @@ const lastName  = () => cy.get("input[name=lastName]")
 const passWord = () => cy.get("input[name=passWord]")
 const dataRights = ()=> cy.get("input[name=dataPermission]")
 const email = () => cy.get("input[name=email]")
-const submitbtn = () => cy.get("button")
+const submitbtn = () => cy.get(`button[id="submitBtn"]`)
 
-it('all form elements exists', () => {
+it('sanity check', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
+    expect(1+1).to.equal(2)
+    expect(2+2).not.equal(5)
+    
    firstName().should('have.text', "")
     
   })
