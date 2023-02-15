@@ -17,7 +17,7 @@ function App() {
       
       {users.map(user=>{
         return (
-            <div key={user.firstName} style={{color: "red", border: "5px solid black", width: "50%", margin:"0 auto" }}>
+            <div className="user" key={user.firstName} style={{color: "red", border: "5px solid black", width: "50%", margin:"0 auto" }}>
             <h2>{user.firstName} {user.lastName}</h2>
             <h3>{user.email}</h3>
             </div>
