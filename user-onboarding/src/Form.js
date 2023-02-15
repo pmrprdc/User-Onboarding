@@ -76,7 +76,6 @@ export default function Form(props){
 <label htmlFor="firstName">
                 First Name
                 <input 
-                className="first"
                 name="firstName" 
                 type="text"
                 value={formData.firstName}
@@ -123,7 +122,7 @@ export default function Form(props){
                 />
             </label>
             
-            <button disabled ={disabled}>Submit</button>
+            <button id = "submitBtn"disabled ={disabled}>Submit</button>
             <div style={{color: "red"}}>
                     <p>{errors.firstName}</p>
                     <p>{errors.lastName}</p>
