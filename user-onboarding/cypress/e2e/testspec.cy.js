@@ -33,7 +33,27 @@ it('sanity check', () => {
   })
 
 
+  it("the propper elements are showing", ()=>{
 
+    firstName().should("exist")
+    lastName().should("exist")
+    email().should("exist")
+    passWord().should("exist")
+    dataRights().should("exist")
+    submitbtn().should("exist")  
+    
+
+  })
+
+
+
+it("can navigate to site", ()=>{
+  cy.url().should("include", "localhost");
+})
+
+it("submit button starts out disabled", ()=>{
+  submitbtn().should("be.disabled")
+})
 
 
 
